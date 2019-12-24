@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
   @RequestMapping("/")
   public String index() {
-    System.out.println("index .. ");
     return "index";
   }
 

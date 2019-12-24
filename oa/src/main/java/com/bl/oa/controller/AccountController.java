@@ -34,7 +34,6 @@ public class AccountController {
       @RequestParam(defaultValue="5") Integer pageSize,
       HttpServletRequest request
   ) {
-    final HttpSession session = request.getSession();
     final List<Account> list = accountService.accountList(pageNum, pageSize);
     for (Account account : list) {
       System.out.println(account);

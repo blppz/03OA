@@ -35,6 +35,7 @@ public class AccountService {
    * @return 用户列表
    */
   public List<Account> accountList(int pageNum, int pageSize) {
+    // 使用分页插件PageHelper
     PageHelper.startPage(pageNum, pageSize);
     return accountMapper.accountList();
   }
