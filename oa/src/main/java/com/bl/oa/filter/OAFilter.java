@@ -35,7 +35,7 @@ public class OAFilter implements Filter {
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
     HttpServletRequest request = (HttpServletRequest) req;
     final String requestURI = request.getRequestURI();
-    // 应该放行的URI
+    // 应该放行的 URI
     for (String url : ignoreUri) {
       if(requestURI.startsWith(url)) {
         chain.doFilter(req, resp);

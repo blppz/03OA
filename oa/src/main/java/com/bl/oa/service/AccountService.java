@@ -45,7 +45,7 @@ public class AccountService {
    * @param loginName 用户名
    * @return 用户实体
    */
-  public Account login(String loginName, String password) {
+  public Account login(String loginName) {
     List<Account> list = accountMapper.findByName(loginName);
     System.out.println(list.size());
     return list.size()==1?list.get(0):null;

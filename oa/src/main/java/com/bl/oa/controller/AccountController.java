@@ -5,6 +5,7 @@ import com.bl.oa.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,9 +49,14 @@ public class AccountController {
   @ResponseBody
   @RequestMapping("validateAccount")
   public String validateAccount(HttpServletRequest request, String loginName, String password) {
-    Account account = accountService.login(loginName, password);
+    if(loginName==null || password==null || loginName.isEmpty() || password.isEmpty()) {
+      return "用户名或密码不能为空";
+    }
 
-    System.out.println(account);
+    Account account = accountService.login(loginName);
+    // MD5加密
+    password = DigestUtils.md5DigestAsHex(password.getBytes());
+
     if(account==null) {
       return "你还没注册呢";
     }
