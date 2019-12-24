@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bl.oa.mapper.AccountMapper">
+  
+  <!-- 根据用户名查找用户 -->
+  <select id="findByName" parameterType="string" resultMap="accountMap">
+    select * from account where login_name=#{loginName}
+  </select>
+
+  <!-- 新增一个用户 -->
+  <insert id="save" parameterType="Account">
+    insert into account(
+        login_name, password, nick_name,
+        age, location, role
+    ) values (
+        loginName, password, nickName,
+        age, location, role
+    )
+  </insert>
+  
+ <!-- <select id="accountList" parameterType="int" resultMap="accountMap">
+    select * from account limit #{start}, #{num}
+  </select>-->
+
+  <select id="accountList" resultMap="accountMap">
+    select * from account
+  </select>
+
+  <resultMap id="accountMap" type="Account">
+    <id column="id" property="id"></id>
+    <result column="login_name" property="loginName"></result>
+    <result column="password" property="password"></result>
+    <result column="age" property="age"></result>
+    <result column="nick_name" property="nickName"></result>
+    <result column="location" property="location"></result>
+    <result column="role" property="role"></result>
+  </resultMap>
+  
+</mapper>
